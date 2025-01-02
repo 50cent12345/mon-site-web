@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ouvrir la Caméra</title>
+</head>
+<body>
+    <h1>Ouvrir la caméra</h1>
+    <a href="#" onclick="openCamera()">Cliquez ici pour activer la caméra</a>
+
+    <script>
+        function openCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    const videoElement = document.createElement('video');
+                    videoElement.srcObject = stream;
+                    videoElement.autoplay = true;
+                    videoElement.style.width = "100%";
+                    document.body.appendChild(videoElement);
+                })
+                .catch(err => {
+                    alert('Impossible d’accéder à la caméra : ' + err.message);
+                });
+        }
+    </script>
+</body>
+</html>
